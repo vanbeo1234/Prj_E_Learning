@@ -1,60 +1,26 @@
-package com.example.backend.model;
-import jakarta.persistence.*;
+package com.example.backend.dto.response;
+
 import java.util.Date;
 
-@Entity
-@Table(name = "User")
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class UserResponse {
     private int id;
-
-    @Column(name = "User_Code", unique = true, nullable = false)
     private String userCode;
-
-    @Column(name = "Name", nullable = false)
     private String name;
-
-    @Column(name = "Email", unique = true, nullable = false)
     private String email;
-
-    @Column(name = "Password", nullable = false)
-    private String password;
-
-    @Column(name = "Phone")
     private String phone;
-
-    @Column(name = "Address")
     private String address;
-
-    @Column(name = "Gender", nullable = false)
     private int gender;
-
-    @Column(name = "Date_Of_Birth")
-    @Temporal(TemporalType.DATE)
     private Date dateOfBirth;
-
-    @Column(name = "Role_ID", nullable = false)
     private int roleId;
-
-    @Column(name = "Status_Code", nullable = false)
     private String statusCode;
-
-    @Column(name = "Experience")
     private Integer experience;
-
-    @Column(name = "Certification")
     private String certification;
-    // Constructor không tham số
-    public User() {
-    }
 
-    // Constructor có tham số
-    public User(String userCode, String name, String email, String password, String phone, String address, int gender, Date dateOfBirth, int roleId, String statusCode, Integer experience, String certification) {
+    public UserResponse(int id, String userCode, String name, String email, String phone, String address, int gender, Date dateOfBirth, int roleId, String statusCode, Integer experience, String certification) {
+        this.id = id;
         this.userCode = userCode;
         this.name = name;
         this.email = email;
-        this.password = password;
         this.phone = phone;
         this.address = address;
         this.gender = gender;
@@ -65,7 +31,6 @@ public class User {
         this.certification = certification;
     }
 
-    // Getter và Setter
     public int getId() {
         return id;
     }
@@ -96,14 +61,6 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getPhone() {
@@ -157,14 +114,16 @@ public class User {
     public Integer getExperience() {
         return experience;
     }
+
     public void setExperience(Integer experience) {
         this.experience = experience;
     }
+
     public String getCertification() {
         return certification != null ? certification : "Chưa có chứng chỉ";
     }
+
     public void setCertification(String certification) {
         this.certification = certification;
     }
-
 }

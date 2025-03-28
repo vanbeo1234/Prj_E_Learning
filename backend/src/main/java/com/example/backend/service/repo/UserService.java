@@ -1,26 +1,28 @@
-package com.example.backend.service;
 
-import com.example.backend.dto.request.AuthRequest;
-import com.example.backend.dto.request.IntrospectRequest;
-import com.example.backend.dto.request.RegisterRequest;
-import com.example.backend.dto.response.AuthResponse;
-import com.example.backend.dto.response.IntrospectResponse;
+package com.example.backend.service.repo;
+
 import com.example.backend.model.User;
+import com.example.backend.repository.repo.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import java.util.List;
-import java.util.Optional;
+import java.util.Date;
 
-public interface UserService {
-    AuthResponse login(AuthRequest request);
+@Service
+public class UserService {
+    @Autowired
+    private UserRepository userRepository;
+    // HIỂN THỊ
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
 
-    AuthResponse register(RegisterRequest request);
+// TÌM KIẾM
 
-    IntrospectResponse introspect(IntrospectRequest request);
+    public List<User> searchUsers(String name, Date dateOfBirth, Integer roleId, String statusCode) {
+        return userRepository.searchUsers(name, dateOfBirth, roleId, statusCode);
+    }
 
-    AuthResponse refreshToken(String refreshToken);
+// CẬP NHẬT
 
-    Optional<User> getUserById(Integer id);
-
-    List<User> getAllUsers();
-
-    User updateUser(Integer id, User user);
 }
